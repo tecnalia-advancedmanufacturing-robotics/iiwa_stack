@@ -49,7 +49,7 @@ add_executable(${PROJECT_NAME}-bin
 ## Add dependence to the iiwa_msg module for the executable
 add_dependencies(${PROJECT_NAME}-bin
 				iiwa_msgs_generate_messages_cpp)
-				
+
 ## Add dependence to the iiwa_msg module for the library
 add_dependencies(${PROJECT_NAME}
 				iiwa_msgs_generate_messages_cpp)
@@ -58,4 +58,18 @@ add_dependencies(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}-bin
     ${PROJECT_NAME}
     ${catkin_LIBRARIES}
+)
+
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-bin
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+install(DIRECTORY include/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
+
+install(DIRECTORY config launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
